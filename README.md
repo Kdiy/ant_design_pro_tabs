@@ -1,6 +1,6 @@
 # Ant Design Pro
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+基于官方Ant design pro V4版本改造而来,在原有的基础只增加了多个tabs功能,其他未做任何改动
 
 ## Environment Prepare
 
