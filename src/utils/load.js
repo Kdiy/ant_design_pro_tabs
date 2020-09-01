@@ -1,22 +1,32 @@
 import React from 'react'
 import Loadable from "react-loadable";
 import Authorized from "@/components/Authorized/Authorized";
+import config from "../../config/config";
 const Loading = () => (<span>Loading...</span>);
 
-const Welcome = Loadable({loader: () => import('../pages/Personnel/Staff/StaffList'), loading: Loading});
-const Test = Loadable({loader: () => import('../pages/Personnel/Department/DepartmentList'), loading: Loading});
-const Init = Loadable({loader: () => import('../pages/Welcome'), loading: Loading, delay: 0});
+
+function eachComponents(routes){
+  let Object = {}
+  const each = (data)=>{
+    data.forEach(item=>{
+      if(item.path && item.component){
+        const path = item.component.replace('./','')
+        Object[item.path] = Loadable({loader: () => import(`../pages/${path}.jsx`), loading: Loading,delay: 200});
+      }
+      if(item.routes){
+        each(item.routes)
+      }
+    })
+  }
+  each(routes)
+  return Object;
+}
+const Components = eachComponents(config.routes)
+
 
 export const _getTabsComponent = (key)=> {
-  switch (key){
-    case '/personnel/staffList':
-      return <Welcome />
-    case '/personnel/departmentList':
-      return <Test />
-    default:
-      return <Init />
-  }
-
+  const UseComponent = Components[key];
+  return <UseComponent />;
 }
 
 export const getTabsComponent = (key,authority,noMatch)=> {
