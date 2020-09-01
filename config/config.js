@@ -102,16 +102,16 @@ export default {
               authority: ['admin'],
               routes: [
                 {
-                  path: 'departmentList',
+                  path: '/personnel/departmentList',
                   name: 'departmentList',
                   icon: 'smile',
-                  component: './Personnel/Department/DepartmentList'
+                  component: './Personnel/Department/DepartmentList/Index'
                 },
                 {
-                  path: 'staffList',
+                  path: '/personnel/staffList',
                   name: 'staffList',
                   icon: 'smile',
-                  component: './Personnel/Staff/StaffList'
+                  component: './Personnel/Staff/StaffList/Index'
                 }
               ]
             },
